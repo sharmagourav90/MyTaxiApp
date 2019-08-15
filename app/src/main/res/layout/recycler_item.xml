@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="poiValues"
+            type="com.example.mytaxi.data.model.PoiValues" />
+        <variable
+            name="itemClickListener"
+            type="com.example.mytaxi.ui.list.MyClickListener" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@android:color/white"
+        android:onClick="@{() -> itemClickListener.cardClicked(poiValues)}"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardElevation="5dp"
+        card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:padding="10dp"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/taxiType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@{poiValues.fleetType}"
+                    android:textAppearance="?android:attr/textAppearanceListItem"/>
+
+                <TextView
+                    android:id="@+id/taxiId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:text="@{poiValues.id.toString()}"
+                    android:textAppearance="?android:attr/textAppearanceListItemSecondary"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/lat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/text_margin"
+                        android:text="@{poiValues.coordinates.latitude}"
+                        android:textAppearance="?android:attr/textAppearanceListItemSmall"/>
+                    <TextView
+                        android:id="@+id/lon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/text_margin"
+                        android:layout_marginStart="10dp"
+                        android:text="@{poiValues.coordinates.longitude}"
+                        android:textAppearance="?android:attr/textAppearanceListItemSmall"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>
